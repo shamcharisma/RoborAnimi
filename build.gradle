@@ -11,10 +11,12 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile 'org.projectlombok:lombok:1.16.12'
+    compileOnly 'org.projectlombok:lombok:1.16.20'
+    annotationProcessor 'org.projectlombok:lombok:1.16.20'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
     compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    testCompile group: 'org.powermock', name: 'powermock-mockito-release-full', version: '1.6.4', ext: 'pom'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "org.mockito:mockito-core:2.+"
 }

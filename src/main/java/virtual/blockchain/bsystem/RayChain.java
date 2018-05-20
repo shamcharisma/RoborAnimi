@@ -21,42 +21,49 @@ public class RayChain {
     }
 
     public boolean isRayChainValid() {
-        return verifyChainValidity();
+        return isValidRayChain();
     }
 
-    private boolean verifyChainValidity() {
+    private boolean isValidRayChain() {
         final LinkedList<Block> blockchain = this.blockchain;
 
         ListIterator<Block> li = blockchain.listIterator();
         while (li.hasNext()) {
-            Block currentBlock = li.next();
-            System.out.println(currentBlock.getMessage());
+            Block currentBlock = blockchain.get(li.nextIndex());
 
-            if (li.hasPrevious()) {
-                Block previousBlock = li.previous();
-                if (!verifyBlockValidity(currentBlock, previousBlock)) {
+            if (li.previousIndex() >= 0) {
+
+                Block previousBlock = blockchain.get(li.previousIndex());
+                if (!isValidBlock(currentBlock, previousBlock)) {
                     return false;
                 }
-
-                //Set it back to current node, since we iterated to previous node in earlier step
-                li.next();
             }
+            li.next();
         }
         return true;
     }
 
-    private boolean verifyBlockValidity(Block currentBlock, Block previousBlock) {
-        return checkIfExistingBlockHashAndGeneratedBlockHashAreEqual(currentBlock) &&
-                checkIfExistingBlockHashAndGeneratedBlockHashAreEqual(previousBlock);
+    private boolean isValidBlock(Block currentBlock, Block previousBlock) {
+        return checkIfCurrentBlockHashAndGeneratedBlockHashAreEqual(currentBlock) &&
+                checkIfPreviousBlockHashAndGeneratedBlockHashAreEqual(currentBlock, previousBlock) &&
+                comparePreviousBlockHash(currentBlock, previousBlock);
     }
 
-    private boolean checkIfExistingBlockHashAndGeneratedBlockHashAreEqual(Block block) {
+    private boolean checkIfCurrentBlockHashAndGeneratedBlockHashAreEqual(Block block) {
         return block.getCurrentBlockHash().equals(generateBlockHash(block));
+    }
+
+    private boolean comparePreviousBlockHash(Block currentBlock, Block previousBlock) {
+        return currentBlock.getPreviousBlockHash().equals(previousBlock.getCurrentBlockHash());
+    }
+
+    private boolean checkIfPreviousBlockHashAndGeneratedBlockHashAreEqual(Block currentBlock, Block previousBlock) {
+        return currentBlock.getPreviousBlockHash().equals(generateBlockHash(previousBlock));
     }
 
     private String generateBlockHash(Block block) {
         try {
-            return BlockBuilder.generateCurrentBlockHash(block.getMessage(), block.getPreviousBlockHash(), block.getTimestamp());
+            return BlockBuilder.generateCurrentBlockHash(block);
         } catch (InterruptedException | ExecutionException e) {
             log.error("Error generating current cryptographic Block hash: {}", e);
             throw new RuntimeException(e);
