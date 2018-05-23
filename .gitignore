@@ -2,4 +2,6 @@
 *.build
 *.gradle
 *.idea
-**/lombok
+/build/*
+/lombok/*
+/out/*
