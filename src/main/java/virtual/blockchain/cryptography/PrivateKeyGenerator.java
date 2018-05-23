@@ -1,6 +1,5 @@
 package virtual.blockchain.cryptography;
 
-import com.google.common.io.BaseEncoding;
 import lombok.extern.log4j.Log4j2;
 import org.bouncycastle.jce.ECNamedCurveTable;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -150,9 +149,5 @@ class PrivateKeyGenerator {
 
         keyPairGenerator.initialize(ecSpec, new SecureRandom());
         return keyPairGenerator.generateKeyPair();
-    }
-
-    public static String convertPrivateKeyToHex(byte[] privateKeyInBytes) {
-        return BaseEncoding.base64().encode(privateKeyInBytes);
     }
 }

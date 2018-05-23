@@ -9,6 +9,7 @@ import org.bouncycastle.math.ec.ECPoint;
 import java.math.BigInteger;
 import java.security.interfaces.ECPrivateKey;
 
+import static virtual.blockchain.cryptography.CryptoUtils.convertPrivateKeyToHex;
 import static virtual.blockchain.cryptography.CyptoConstants.COMPRESSED_SIGN_BYTE;
 import static virtual.blockchain.cryptography.CyptoConstants.PRIVATE_KEY_BYTES;
 import static virtual.blockchain.cryptography.CyptoConstants.PUBLIC_KEY_BYTES;
@@ -66,9 +67,5 @@ public class PublicKeyGenerator {
             return newArr;
         }
         return privateKey;
-    }
-
-    public static String convertPrivateKeyToHex(byte[] privateKeyInBytes) {
-        return BaseEncoding.base64().encode(privateKeyInBytes);
     }
 }
