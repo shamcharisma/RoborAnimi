@@ -3,6 +3,7 @@ package virtual.blockchain.bsystem;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Date;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
