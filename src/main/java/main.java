@@ -1,13 +1,13 @@
 import com.google.gson.GsonBuilder;
-import virtual.blockchain.bsystem.Block;
-import virtual.blockchain.bsystem.BlockBuilder;
-import virtual.blockchain.bsystem.RayChain;
+import virtual.blockchain.bsystem.block.Block;
+import virtual.blockchain.bsystem.block.BlockBuilder;
+import virtual.blockchain.bsystem.chain.RayChain;
 
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class main {
-    public static void main(String[] args) {
+    public main(String[] args) {
         final LinkedList<Block> blockchain = new LinkedList<>();
         final AtomicInteger nonce = new AtomicInteger(1);
 

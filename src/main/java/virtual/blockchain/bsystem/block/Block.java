@@ -1,4 +1,4 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.bsystem.block;
 
 import lombok.Builder;
 import lombok.Getter;

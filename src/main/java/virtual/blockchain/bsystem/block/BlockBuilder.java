@@ -1,9 +1,9 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.bsystem.block;
 
 import lombok.extern.log4j.Log4j2;
+import virtual.blockchain.cryptography.DigitalSignature;
 
 import java.util.Date;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Log4j2
 public class BlockBuilder {
-    public static int difficulty = 3;
+    private static final int difficulty = 3;
 
     public static Block createBlock(String message, String previousBlockHash, AtomicInteger nonce) {
         final long timestamp = new Date().getTime();
@@ -24,7 +24,7 @@ public class BlockBuilder {
                 .build();
     }
 
-    public static Block setCurrentBlockHashDuringMining(Block block) {
+    private static Block setCurrentBlockHashDuringMining(Block block) {
         final String message = block.getMessage();
         final String previousBlockHash = block.getPreviousBlockHash();
         final long timestamp = block.getTimestamp();

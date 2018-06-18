@@ -1,9 +1,11 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.bsystem.block;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import virtual.blockchain.bsystem.block.Block;
+import virtual.blockchain.bsystem.block.BlockBuilder;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -23,7 +25,7 @@ public class BlockBuilderTest {
     private AtomicInteger nonce = new AtomicInteger(1);
 
     @Test
-    public void test_unique_hash_blocks_get_generated() throws ExecutionException, InterruptedException {
+    public void test_unique_hash_blocks_get_generated() {
         Block genesisBlock = BlockBuilder.createBlock("Welcome to the very first block in Robor Animi verse!", "0", nonce);
         Block secondBlock = BlockBuilder.createBlock("This is the second block in Robor Animi verse", genesisBlock.getCurrentBlockHash(), nonce);
         Block thirdBlock = BlockBuilder.createBlock("This is the third block", secondBlock.getCurrentBlockHash(), nonce);
@@ -32,7 +34,7 @@ public class BlockBuilderTest {
     }
 
     @Test
-    public void test_unique_hash_blocks_get_generated_with_same_message() throws ExecutionException, InterruptedException {
+    public void test_unique_hash_blocks_get_generated_with_same_message() {
         String sameMessage = "Welcome to the very first block in Robor Animi verse!";
 
         Block genesisBlock = BlockBuilder.createBlock(sameMessage, "0", nonce);
@@ -43,7 +45,7 @@ public class BlockBuilderTest {
     }
 
     @Ignore
-    public void test_unique_hash_blocks_get_generated_with_same_message_and_same_previous_block_hash() throws ExecutionException, InterruptedException {
+    public void test_unique_hash_blocks_get_generated_with_same_message_and_same_previous_block_hash() {
         String sameMessage = "Welcome to the very first block in Robor Animi verse!";
         Block genesisBlock = BlockBuilder.createBlock(sameMessage, "0", nonce);
         Block secondBlock = BlockBuilder.createBlock(sameMessage, "0", nonce);

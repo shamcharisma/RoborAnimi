@@ -1,4 +1,4 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.cryptography;
 
 import com.google.common.hash.Hashing;
 import lombok.extern.log4j.Log4j2;

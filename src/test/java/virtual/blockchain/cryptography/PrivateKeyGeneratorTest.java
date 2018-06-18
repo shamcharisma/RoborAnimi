@@ -44,7 +44,7 @@ public class PrivateKeyGeneratorTest {
     }
 
     private String getPrivateKey() {
-        return PrivateKeyGenerator.convertPrivateKeyToHex(privateKeyGenerator.generatePrivateKey().getEncoded());
+        return CryptoUtils.convertPrivateKeyToHex(privateKeyGenerator.generatePrivateKey().getEncoded());
     }
 
     private List<String> getNPrivateKeys(int n) {

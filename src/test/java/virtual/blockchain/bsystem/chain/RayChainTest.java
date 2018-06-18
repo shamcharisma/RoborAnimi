@@ -1,11 +1,14 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.bsystem.chain;
 
 import org.junit.Test;
+import virtual.blockchain.bsystem.block.Block;
+import virtual.blockchain.bsystem.block.BlockBuilder;
+import virtual.blockchain.bsystem.chain.RayChain;
 
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.*;
 
 
 public class RayChainTest {
@@ -25,7 +28,7 @@ public class RayChainTest {
         blockchain.add(thirdBlock);
 
         final RayChain rayChain = RayChain.createRayChain(blockchain);
-        assertEquals(true, rayChain.isRayChainValid());
+        assertTrue(rayChain.isRayChainValid());
     }
 
     @Test
@@ -42,6 +45,6 @@ public class RayChainTest {
         blockchain.add(thirdBlock);
 
         final RayChain rayChain = RayChain.createRayChain(blockchain);
-        assertEquals(false, rayChain.isRayChainValid());
+        assertFalse(rayChain.isRayChainValid());
     }
 }

@@ -1,6 +1,8 @@
-package virtual.blockchain.bsystem;
+package virtual.blockchain.bsystem.chain;
 
 import lombok.extern.log4j.Log4j2;
+import virtual.blockchain.bsystem.block.Block;
+import virtual.blockchain.bsystem.block.BlockBuilder;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
